@@ -63,17 +63,18 @@ class ExportEnv {
 			const globalEnvironment = this.serverless.service.provider.environment;
 			_.assign(envVars, globalEnvironment);
 
-			// collect environment variables of functions
-			const functionEnvironment = collectFunctionEnvVariables(this.serverless);
-			_.assign(envVars, functionEnvironment);
+			// // collect environment variables of functions
+			// const functionEnvironment = collectFunctionEnvVariables(this.serverless);
+			// _.assign(envVars, functionEnvironment);
 
-			// collect environment variables for serverless offline
-			if (this.isOfflineHooked) {
-				const offlineEnvVars = collectOfflineEnvVariables(this.serverless, this.options);
-				_.assign(envVars, offlineEnvVars);
-			}
+			// // collect environment variables for serverless offline
+			// if (this.isOfflineHooked) {
+			// 	const offlineEnvVars = collectOfflineEnvVariables(this.serverless, this.options);
+			// 	_.assign(envVars, offlineEnvVars);
+			// }
 
 			process.env.SLS_DEBUG && this.serverless.cli.log(`Found ${_.size(envVars)} environment variable(s)`);
+			
 			this.environmentVariables = envVars;
 			return BbPromise.resolve();
 		});
